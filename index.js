@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';  //use bodyParser for process the output of express
 import mongoose from 'mongoose';
-import studentRouter from './routes/studentRoutes.js';
 import productRouter from './routes/productRouter.js';
 import userRouter from './routes/userRouter.js';
 
@@ -18,9 +17,8 @@ connection.once("open", ()=>{
 
 //bodyparser is for process the output of express
 app.use(bodyParser.json())  //for middle ware app.use <- "use" key word...
-
-app.use("/api/students",studentRouter) //if the request come as student sent it to studentRouter
-app.use("/api/products",productRouter)
+ 
+app.use("/api/products",productRouter)  //if the request come as product sent it to productRouter
 app.use("/api/users", userRouter)
 
 //start express
