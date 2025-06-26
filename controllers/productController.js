@@ -17,6 +17,25 @@ export function getProduct(req,res){
 }
 
 export function createProduct(req,res){
+    
+    //if you do not send a request without token 
+    if(req.user == null){
+        res.json({
+            message : "you are not logged in"
+        })
+
+        return
+    }
+
+    //only admin can add product
+    if(req.user != "admin"){
+        res.json({
+            message : "you are not an admin"
+        })
+
+        retrun 
+    }
+    
     const product = new Product(req.body)
 
     product.save().then(()=>{
